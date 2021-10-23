@@ -1,0 +1,7 @@
+.activeItem {
+    background-color: purple;
+}
+
+.inactive {
+    background-color: orange;
+}

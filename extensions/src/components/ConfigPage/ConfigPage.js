@@ -12,7 +12,9 @@ export default class ConfigPage extends React.Component{
         this.twitch = window.Twitch ? window.Twitch.ext : null
         this.state={
             finishedLoading:false,
-            theme:'light'
+            theme:'light',
+            firstWeapon: null,
+            secondWeapon: null,
         }
     }
 

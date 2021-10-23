@@ -50,6 +50,28 @@
       "orientation": "Portrait",
       "type": "panel",
       "viewerType": "Broadcaster"
+    },
+    {
+      "channelId": "30978675",
+      "configurationAnchor": "panel",
+      "displayChannelName": "levif1",
+      "features": {
+        "isBitsEnabled": false,
+        "isChatEnabled": false,
+        "isSubscriptionStatusAvailable": false
+      },
+      "frameSize": {
+        "width": 1280,
+        "height": 720
+      },
+      "id": "2",
+      "isPopout": false,
+      "label": "Config",
+      "linked": true,
+      "linkedUserId": "265737932",
+      "orientation": "Portrait",
+      "type": "config",
+      "viewerType": "Broadcaster"
     }
   ],
   "manifest": {
