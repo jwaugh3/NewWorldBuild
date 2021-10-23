@@ -1,7 +1,9 @@
 import React from 'react'
 import Authentication from '../../util/Authentication/Authentication'
 import Nav from './Nav/Nav';
-
+import Skills from './Skills/Skills';
+import Gear from './Gear/Gear';
+import Stats from './Stats/Stats';
 import './App.css'
 
 export default class App extends React.Component {
@@ -16,8 +18,9 @@ export default class App extends React.Component {
       isVisible: true,
       firstWeapon: null,
       secondWeapon: null,
-      navItems: ["Gear Loadout", "Attribute Allocation", "Life Staff", "Rapier"],
-      activeItem: "Gear Loadout",
+      navItems: ["Gear", "Stats", "Skills"],
+      activeItem: "Gear",
+      body: '',
     };
 
     this.updateActiveItem = this.updateActiveItem.bind(this);
@@ -26,6 +29,7 @@ export default class App extends React.Component {
   }
 
   updateActiveItem(event) {
+    this.updateBody(event.target.id)
     this.setState({ activeItem: event.target.id });
   }
 
@@ -35,6 +39,25 @@ export default class App extends React.Component {
 
   updateSecondWeapon(weapon) {
     this.setState({ SecondWeapon: weapon });
+  }
+
+  updateBody(newActive = 'Gear'){
+      let myReturn = '';
+      switch (newActive) {
+            case 'Gear':
+                myReturn = <Gear></Gear>;
+                break;
+            case 'Stats':
+                myReturn = <Stats></Stats>;
+                break;
+            case 'Skills':
+              myReturn = <Skills></Skills>;
+              break;
+          default:
+              myReturn = <Gear></Gear>;
+              break;
+      }
+      this.setState({body: myReturn});
   }
 
   contextUpdate(context, delta) {
@@ -54,6 +77,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
+    this.updateBody();
     if (this.twitch) {
       this.twitch.onAuthorized((auth) => {
         this.Authentication.setToken(auth.token, auth.userId);
@@ -114,7 +138,8 @@ export default class App extends React.Component {
               updateActiveItem={this.updateActiveItem}
               navItems={this.state.navItems}
               activeItem={this.state.activeItem}
-            ></Nav>
+            />
+            <div class="bodyDiv">{this.state.body}</div>
           </div>
         </div>
       );
