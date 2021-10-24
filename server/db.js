@@ -8,12 +8,43 @@ AWS.config.update({
 })
 
 const dynamoClient = new AWS.DynamoDB.DocumentClient();
-const TABLE_NAME = "items";
 
-const getCharacters = async => {
+const getItems = async (table_name, last_key = null) => {
   const params = {
-    TableName: TABLE_NAME
+    TableName: table_name,
+    ExclusiveStartKey: last_key,
   };
-  const characters = await dynamoClient.scan(params).promise();
-  return characters;
+  return await dynamoClient.scan(params).promise();
+}
+
+const addOrUpdateItem = async (table_name, item) => {
+  const params = {
+    TableName: table_name,
+    Item: item,
+  }
+  return await dynamoClient.put(params).promise();
+}
+
+const getItemById = async (table_name, item) => {
+  const params = {
+    TableName: table_name,
+    Key: {id}
+  }
+  return await dynamoClient.put(params).promise();
+}
+
+const deleteItem = async (table_name, id) => {
+  const params = {
+    TableName: table_name,
+    Key: {id}
+  }
+  return await dynamoClient.delete(params).promise();
+}
+
+module.exports = {
+  dynamoClient,
+  getItems,
+  addOrUpdateItem,
+  getItemById,
+  deleteItem,
 }
