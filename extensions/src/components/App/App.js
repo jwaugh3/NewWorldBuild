@@ -4,7 +4,9 @@ import Nav from './Nav/Nav';
 import Skills from './Skills/Skills';
 import Gear from './Gear/Gear';
 import Stats from './Stats/Stats';
+
 import './App.css'
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -45,7 +47,52 @@ export default class App extends React.Component {
       let myReturn = '';
       switch (newActive) {
             case 'Gear':
-                myReturn = <Gear></Gear>;
+                myReturn = (
+                  <Gear
+                    head={
+                      "https://cdn.nwdb.info/db/v7/icons/items/weapon/1hlongsword_widowmakert5.png"
+                    }
+                    chest={
+                      "https://cdn.nwdb.info/db/v7/icons/items/weapon/1hlongsword_widowmakert5.png"
+                    }
+                    gloves={
+                      "https://cdn.nwdb.info/db/v7/icons/items/weapon/1hlongsword_widowmakert5.png"
+                    }
+                    legs={
+                      "https://cdn.nwdb.info/db/v7/icons/items/weapon/1hlongsword_widowmakert5.png"
+                    }
+                    boots={
+                      "https://cdn.nwdb.info/db/v7/icons/items/weapon/1hlongsword_widowmakert5.png"
+                    }
+                    shield={
+                      "https://cdn.nwdb.info/db/v7/icons/items/weapon/1hlongsword_widowmakert5.png"
+                    }
+                    weapon1={
+                      "https://cdn.nwdb.info/db/v7/icons/items/weapon/1hlongsword_widowmakert5.png"
+                    }
+                    weapon2={
+                      "https://cdn.nwdb.info/db/v7/icons/items/weapon/1hlongsword_widowmakert5.png"
+                    }
+                    necklace={
+                      "https://cdn.nwdb.info/db/v7/icons/items/weapon/1hlongsword_widowmakert5.png"
+                    }
+                    ring={
+                      "https://cdn.nwdb.info/db/v7/icons/items/weapon/1hlongsword_widowmakert5.png"
+                    }
+                    earring={
+                      "https://cdn.nwdb.info/db/v7/icons/items/weapon/1hlongsword_widowmakert5.png"
+                    }
+                    bag1={
+                      "https://cdn.nwdb.info/db/v7/icons/items/weapon/1hlongsword_widowmakert5.png"
+                    }
+                    bag2={
+                      "https://cdn.nwdb.info/db/v7/icons/items/weapon/1hlongsword_widowmakert5.png"
+                    }
+                    bag3={
+                      "https://cdn.nwdb.info/db/v7/icons/items/weapon/1hlongsword_widowmakert5.png"
+                    }
+                  />
+                );
                 break;
             case 'Stats':
                 myReturn = <Stats></Stats>;
@@ -139,7 +186,7 @@ export default class App extends React.Component {
               navItems={this.state.navItems}
               activeItem={this.state.activeItem}
             />
-            <div class="bodyDiv">{this.state.body}</div>
+            <div className="bodyDiv">{this.state.body}</div>
           </div>
         </div>
       );

@@ -14,7 +14,7 @@
     font-weight: bold;
     padding-top: 13px;
     text-align: center;
-    height: 30px;
+    height: 100%;
 }
 
 #navBar ul{
@@ -23,5 +23,6 @@
     width: 100%;
     position: absolute;
     margin-top: 0px;
+    height: 45px;
     background-color: #343436;
 }
