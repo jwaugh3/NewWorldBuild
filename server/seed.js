@@ -12,10 +12,8 @@ const seedData = async (items) => {
 };
 
 const seedDetailData = async (items) => {
-  console.log(items.length)
-  const slicedArray = items.slice(7399, 7511)
-  console.log(slicedArray.length)
   try {
+    const slicedArray = items.slice(0, 200);
     //array length shouldn't exceed 200 items
     const itemPromises = slicedArray.map((item) => {
       const promise = axios.get(`https://nwdb.info/db/item/${item.toLowerCase()}.json`);
