@@ -1,0 +1,28 @@
+.activeItem {
+    background: green;
+    color: #fff;
+}
+
+.inactive {
+    background: #343436;
+    color: #fff;
+}
+
+#navBar li{
+    display: inline-block;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 13px;
+    text-align: center;
+    height: 100%;
+}
+
+#navBar ul{
+    list-style: none;
+    padding: 0px;
+    width: 100%;
+    position: absolute;
+    margin-top: 0px;
+    height: 45px;
+    background-color: #343436;
+}

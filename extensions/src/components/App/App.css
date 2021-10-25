@@ -10,3 +10,11 @@
 .App-dark {
 	color: #e5e3e8;
 }
+
+body{
+	margin: 0px 0px;
+}
+
+.bodyDiv{
+	padding-top: 45px;
+}
