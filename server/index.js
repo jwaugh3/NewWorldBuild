@@ -33,6 +33,8 @@ const getItemDetails = async () => {
     items = await getItems('items', items?.LastEvaluatedKey);
     totalItems.push(...items.Items)
   }while(items.LastEvaluatedKey !== undefined)
-  const itemIDs = totalItems.map(item => item.id);
-  seedDetailData(itemIDs)
+  // const itemIDs = totalItems.map(item => item.id);
+  // seedDetailData(itemIDs)
 };
+
+// getItemDetails()

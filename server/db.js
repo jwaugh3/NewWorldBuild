@@ -9,11 +9,29 @@ AWS.config.update({
 
 const dynamoClient = new AWS.DynamoDB.DocumentClient();
 
-const getItems = async (table_name, last_key = null) => {
+const getItems = async (table_name, last_key = null, specified_columns = null, reserved_columns = null) => {
   const params = {
     TableName: table_name,
     ExclusiveStartKey: last_key,
   };
+
+  const obj = {};
+  const projectionArray = []
+  if(reserved_columns) {
+    for(const key of reserved_columns) {
+      obj[`#${key}`] = key;
+      projectionArray.push(`#${key}`);
+    }
+  }
+  if(specified_columns) {
+    projectionArray.push(...specified_columns);
+  }
+  if(Object.keys(obj).length !== 0) {
+    params.ExpressionAttributeNames = obj;
+  }
+  if(projectionArray.length !== 0) {
+    params.ProjectionExpression = projectionArray.join(', ');
+  }
   return await dynamoClient.scan(params).promise();
 }
 
