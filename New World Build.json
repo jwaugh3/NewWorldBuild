@@ -1,7 +1,7 @@
 {
   "allowHttpBackend": false,
-  "backendCommand": "",
-  "backendFolderName": "",
+  "backendCommand": "nodemon server.js",
+  "backendFolderName": "server",
   "certificateExceptions": [
     {
       "isAllowed": true,
@@ -52,9 +52,9 @@
       "viewerType": "Broadcaster"
     },
     {
-      "channelId": "30978675",
+      "channelId": "54592802",
       "configurationAnchor": "panel",
-      "displayChannelName": "levif1",
+      "displayChannelName": "jwaugh3",
       "features": {
         "isBitsEnabled": false,
         "isChatEnabled": false,
@@ -66,7 +66,7 @@
       },
       "id": "2",
       "isPopout": false,
-      "label": "Config",
+      "label": "setup",
       "linked": true,
       "linkedUserId": "265737932",
       "orientation": "Portrait",

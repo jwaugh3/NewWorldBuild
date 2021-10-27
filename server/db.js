@@ -9,14 +9,20 @@ AWS.config.update({
 
 const dynamoClient = new AWS.DynamoDB.DocumentClient();
 
-const getItems = async (table_name, last_key = null, specified_columns = null, reserved_columns = null) => {
+const scanClient = async (params) => await dynamoClient.scan(params).promise();
+
+const buildParams = (table_name, last_key, specified_columns, reserved_columns, condition) => {
   const params = {
     TableName: table_name,
-    ExclusiveStartKey: last_key,
+    ExpressionAttributeNames: {},
+    ExpressionAttributeValues: {},
   };
 
   const obj = {};
   const projectionArray = []
+  if(last_key) {
+    params.ExclusiveStartKey = last_key;
+  }
   if(reserved_columns) {
     for(const key of reserved_columns) {
       obj[`#${key}`] = key;
@@ -26,13 +32,33 @@ const getItems = async (table_name, last_key = null, specified_columns = null, r
   if(specified_columns) {
     projectionArray.push(...specified_columns);
   }
+  if(condition) {
+    console.log(condition.split(':'))
+    params.ExpressionAttributeValues[`:${condition.split(':')[1]}`] = `${condition.split(':')[1]}`
+    params.KeyConditionExpression = condition;
+    params.FilterExpression = condition;
+
+  }
   if(Object.keys(obj).length !== 0) {
     params.ExpressionAttributeNames = obj;
   }
   if(projectionArray.length !== 0) {
     params.ProjectionExpression = projectionArray.join(', ');
   }
-  return await dynamoClient.scan(params).promise();
+  console.log(params)
+  return params;
+}
+
+const getItems = async (params) => {
+  let localParams = params;
+  const totalItems = []
+  let items
+  do{
+    items = await scanClient(localParams)
+    totalItems.push(...items.Items)
+    localParams.ExclusiveStartKey = items.LastEvaluatedKey;
+  }while(items.LastEvaluatedKey !== undefined)
+  return totalItems;
 }
 
 const addOrUpdateItem = async (table_name, item) => {
@@ -61,6 +87,7 @@ const deleteItem = async (table_name, id) => {
 
 module.exports = {
   dynamoClient,
+  buildParams,
   getItems,
   addOrUpdateItem,
   getItemById,
